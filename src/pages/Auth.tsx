@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Notebook, Mail, Lock, User, Loader2 } from 'lucide-react';
+import { Notebook, Mail, Lock, User, Loader2, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -95,7 +95,17 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 relative">
+      {/* Return to Home Button - Top Left */}
+      <Button
+        variant="ghost"
+        onClick={() => navigate('/')}
+        className="absolute top-4 left-4"
+      >
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Return to Home Page
+      </Button>
+
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">

@@ -19,6 +19,7 @@ export interface Task {
   created_at: string;
   completedBy: string[];
   completions: TaskCompletion[];
+  commentCount?: number;
 }
 
 export interface TaskFolder {
@@ -188,7 +189,24 @@ export function useNotebooks() {
             .select('*', { count: 'exact', head: true })
             .eq('notebook_id', nb.id);
 
-          // Build tasks with completedBy and completions
+          // Get comment counts for all tasks
+          let commentCounts: Map<string, number> = new Map();
+          if (taskIds.length > 0) {
+            const { data: commentData } = await supabase
+              .from('task_comments')
+              .select('task_id')
+              .in('task_id', taskIds);
+            
+            if (commentData) {
+              // Count comments per task
+              commentData.forEach(comment => {
+                const currentCount = commentCounts.get(comment.task_id) || 0;
+                commentCounts.set(comment.task_id, currentCount + 1);
+              });
+            }
+          }
+
+          // Build tasks with completedBy, completions, and commentCount
           const tasksWithCompletions = tasks.map(t => {
             const taskCompletions = completions.filter(c => c.task_id === t.id);
             return {
@@ -198,7 +216,8 @@ export function useNotebooks() {
                 userId: c.user_id,
                 userName: c.userName,
                 avatarUrl: c.avatarUrl
-              }))
+              })),
+              commentCount: commentCounts.get(t.id) || 0
             };
           });
 
