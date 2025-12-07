@@ -1,0 +1,239 @@
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Green-pastel beige color scheme */
+    --background: 60 25% 96%; /* Soft beige */
+    --foreground: 120 15% 25%; /* Dark sage green */
+
+    --card: 60 30% 98%; /* Cream beige */
+    --card-foreground: 120 15% 25%;
+
+    --popover: 60 30% 98%;
+    --popover-foreground: 120 15% 25%;
+
+    --primary: 145 45% 65%; /* Soft mint green */
+    --primary-foreground: 120 20% 15%;
+
+    --secondary: 60 20% 92%; /* Light beige */
+    --secondary-foreground: 120 15% 25%;
+
+    --muted: 60 15% 94%;
+    --muted-foreground: 120 10% 40%;
+
+    --accent: 145 35% 75%; /* Pastel green */
+    --accent-foreground: 120 15% 25%;
+
+    --destructive: 0 70% 65%; /* Soft coral */
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 50% 55%; /* Fresh green */
+    --success-foreground: 0 0% 100%;
+
+    --warning: 45 80% 70%; /* Warm peach */
+    --warning-foreground: 120 20% 15%;
+
+    --border: 60 20% 88%;
+    --input: 60 20% 90%;
+    --ring: 145 45% 65%;
+
+    --radius: 1rem; /* More rounded for cuter look */
+
+    --sidebar-width: 280px;
+    --sidebar-background: 145 30% 92%; /* Soft green-beige */
+    --sidebar-foreground: 120 15% 25%;
+    --sidebar-primary: 145 45% 65%;
+    --sidebar-primary-foreground: 120 20% 15%;
+    --sidebar-accent: 145 25% 88%;
+    --sidebar-accent-foreground: 120 15% 25%;
+    --sidebar-border: 60 20% 85%;
+    --sidebar-ring: 145 45% 65%;
+    --sidebar-muted: 120 10% 50%;
+
+    --progress-gradient: linear-gradient(90deg, hsl(145 45% 65%) 0%, hsl(145 55% 70%) 50%, hsl(145 45% 65%) 100%);
+    --progress-track: 60 20% 90%;
+
+    --notebook-owner: 45 80% 70%;
+    --notebook-admin: 145 45% 65%;
+    --notebook-reader: 145 50% 55%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 220 14% 96%;
+
+    --card: 224 55% 8%;
+    --card-foreground: 220 14% 96%;
+
+    --popover: 224 55% 8%;
+    --popover-foreground: 220 14% 96%;
+
+    --primary: 238 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 224 55% 12%;
+    --secondary-foreground: 220 14% 96%;
+
+    --muted: 224 55% 12%;
+    --muted-foreground: 220 9% 60%;
+
+    --accent: 224 55% 12%;
+    --accent-foreground: 220 14% 96%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 224 55% 15%;
+    --input: 224 55% 15%;
+    --ring: 238 84% 67%;
+
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 238 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 55% 12%;
+    --sidebar-accent-foreground: 220 14% 96%;
+    --sidebar-border: 224 55% 15%;
+    --sidebar-ring: 238 84% 67%;
+    --sidebar-muted: 220 9% 60%;
+
+    --progress-track: 224 55% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .progress-bar-fill {
+    background: var(--progress-gradient);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--sidebar-accent)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--sidebar-accent));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--sidebar-border));
+  }
+
+  /* Y2K Pattern Background */
+  .y2k-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(168, 230, 207, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 212, 163, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(145, 200, 180, 0.1) 0%, transparent 50%);
+    position: relative;
+  }
+
+  .y2k-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A8E6CF' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* Sparkle animation */
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+
+  .sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+}
+
+@keyframes progress-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes check-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-progress-shine {
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+.animate-check-bounce {
+  animation: check-bounce 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.3s ease-out;
+}
