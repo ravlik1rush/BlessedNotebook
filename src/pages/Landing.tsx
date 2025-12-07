@@ -20,7 +20,7 @@ const Landing = () => {
             <div className="w-10 h-10 rounded-2xl bg-primary/20 flex items-center justify-center shadow-sm">
               <Notebook className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-xl font-bold text-foreground">Progress Notebook </span>
+            <span className="text-xl font-bold text-foreground">EchoTasks</span>
           </div>
           <div className="flex items-center gap-3">
             <Button variant="ghost" onClick={() => navigate('/auth')} className="rounded-full">
@@ -43,15 +43,12 @@ const Landing = () => {
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Organize, Track, and
-            <span className="text-primary"> Achieve</span>
+            <span className="text-primary"> Achieve</span> <span className="text-3xl">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             A collaborative task tracking application where you can create notebooks, 
-            add notes with tasks, and track progress both individually and as a group.
+            add notes with tasks, and track progress both individually and as a group. 
           </p>
-          <div className="mt-4">
-            <span className="text-3xl">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span>
-          </div>
         </div>
       </section>
 
@@ -59,7 +56,7 @@ const Landing = () => {
       <footer className="container mx-auto px-4 py-8 border-t border-border mt-auto relative z-10">
         <div className="text-center">
           <span className="text-sm text-muted-foreground">
-            © 2024 Progress Notebook. All rights reserved. 
+            © 2025 . All rights reserved. 
           </span>
         </div>
       </footer>

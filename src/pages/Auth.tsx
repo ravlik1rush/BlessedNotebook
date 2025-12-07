@@ -112,7 +112,7 @@ const Auth = () => {
           <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/20 flex items-center justify-center">
             <Notebook className="w-8 h-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">Progress Notebook</h1>
+          <h1 className="text-3xl font-bold text-foreground">EchoTasks</h1>
           <p className="text-muted-foreground mt-2">Track your goals together </p>
         </div>
 

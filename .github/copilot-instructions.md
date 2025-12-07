@@ -1,8 +1,8 @@
-# Progress Notebook - AI Coding Agent Instructions
+# EchoTasks - AI Coding Agent Instructions
 
 ## Architecture Overview
 
-**Progress Notebook** is a collaborative task tracking application built with React, Vite, TypeScript, and Supabase. The architecture separates UI components from business logic through custom hooks and context providers.
+**EchoTasks** is a collaborative task tracking application built with React, Vite, TypeScript, and Supabase. The architecture separates UI components from business logic through custom hooks and context providers.
 
 ### Core Components
 

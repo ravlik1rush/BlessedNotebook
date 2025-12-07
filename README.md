@@ -1,4 +1,4 @@
-# Progress Notebook
+# EchoTasks
 
 A collaborative task tracking application where users can create notebooks, add notes with tasks, and track progress both individually and as a group.
 
