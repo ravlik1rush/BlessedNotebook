@@ -244,11 +244,11 @@ export function NotebookSidebar({
                     )}
                     
                      {notebook.is_shared && notebook.memberCount > 1 && (
-                       <div className="flex items-center gap-1 text-xs text-sidebar-muted">
-                         <Users className="w-3.5 h-3.5" />
-                         <span>{notebook.memberCount}</span>
-                       </div>
-                     )}
+                      <div className="flex items-center gap-1 text-xs text-sidebar-muted">
+                        <Users className="w-3.5 h-3.5" />
+                        <span>{notebook.memberCount}</span>
+                      </div>
+                    )}
                     
                     {isOwner && (
                       <DropdownMenu>

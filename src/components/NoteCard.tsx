@@ -194,14 +194,18 @@ export function NoteCard({
       return;
     }
 
-    // Reordering within same container (root only for now)
-    if (activeTask.folder_id === null && overTask.folder_id === null) {
-      const tasksNotInFolders = note.tasks.filter(t => !t.folder_id);
-      const oldIndex = tasksNotInFolders.findIndex((t) => t.id === activeId);
-      const newIndex = tasksNotInFolders.findIndex((t) => t.id === overId);
+    // Reordering within same container (root or folder)
+    if (activeTask.folder_id === overTask.folder_id) {
+      // Get tasks in the same container (root or folder)
+      const tasksInContainer = activeTask.folder_id === null
+        ? note.tasks.filter(t => !t.folder_id)
+        : note.tasks.filter(t => t.folder_id === activeTask.folder_id);
+      
+      const oldIndex = tasksInContainer.findIndex((t) => t.id === activeId);
+      const newIndex = tasksInContainer.findIndex((t) => t.id === overId);
 
       if (oldIndex !== -1 && newIndex !== -1) {
-        const newOrder = arrayMove(tasksNotInFolders, oldIndex, newIndex).map((task, index) => ({
+        const newOrder = arrayMove(tasksInContainer, oldIndex, newIndex).map((task, index) => ({
           id: task.id,
           order_index: index,
         }));
@@ -213,7 +217,7 @@ export function NoteCard({
   return (
     <div 
       className={cn(
-        'bg-card rounded-xl border border-border shadow-sm overflow-hidden animate-fade-in flex flex-col h-full',
+        'bg-card rounded-xl border border-border shadow-sm overflow-hidden animate-fade-in flex flex-col',
         'hover:shadow-md transition-shadow duration-300'
       )}
       style={{ animationDelay: `${index * 50}ms` }}

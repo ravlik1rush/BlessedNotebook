@@ -234,6 +234,22 @@
   animation: fade-in 0.3s ease-out;
 }
 
-.animate-slide-in {
-  animation: slide-in-right 0.3s ease-out;
-}
+  .animate-slide-in {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  /* Masonry Layout Styles */
+  .masonry-grid {
+    display: flex;
+    width: auto;
+    margin-left: -0.75rem; /* -12px to offset column padding */
+  }
+
+  .masonry-grid_column {
+    padding-left: 0.75rem; /* 12px gap between columns */
+    background-clip: padding-box;
+  }
+
+  .masonry-grid_column > div {
+    margin-bottom: 0.75rem; /* 12px gap between items in the same column */
+  }

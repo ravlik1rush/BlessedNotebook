@@ -7,6 +7,7 @@ import { SortableTaskItem } from './SortableTaskItem';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -145,21 +146,26 @@ export function TaskFolder({
               No tasks in folder
             </p>
           ) : (
-            folderTasks.map(task => (
-              <SortableTaskItem key={task.id} task={task}>
-                <TaskItem
-                  task={task}
-                  notebookId={notebookId}
-                  noteId={noteId}
-                  canEdit={canEdit}
-                  isShared={isShared}
-                  currentUserId={currentUserId}
-                  onRenameTask={onRenameTask}
-                  onDeleteTask={onDeleteTask}
-                  onToggleTask={onToggleTask}
-                />
-              </SortableTaskItem>
-            ))
+            <SortableContext
+              items={folderTasks.map(t => t.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              {folderTasks.map(task => (
+                <SortableTaskItem key={task.id} task={task}>
+                  <TaskItem
+                    task={task}
+                    notebookId={notebookId}
+                    noteId={noteId}
+                    canEdit={canEdit}
+                    isShared={isShared}
+                    currentUserId={currentUserId}
+                    onRenameTask={onRenameTask}
+                    onDeleteTask={onDeleteTask}
+                    onToggleTask={onToggleTask}
+                  />
+                </SortableTaskItem>
+              ))}
+            </SortableContext>
           )}
 
           {/* Add Task to Folder */}

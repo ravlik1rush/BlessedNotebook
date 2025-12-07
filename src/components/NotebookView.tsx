@@ -9,6 +9,7 @@ import { MembersPanel } from './MembersPanel';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import Masonry from 'react-masonry-css';
 import {
   DndContext,
   closestCenter,
@@ -315,7 +316,16 @@ export function NotebookView({
               items={notebook.notes.map(n => n.id)}
               strategy={rectSortingStrategy}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 auto-rows-fr">
+              <Masonry
+                breakpointCols={{
+                  default: 4,
+                  1100: 3,
+                  700: 2,
+                  500: 1,
+                }}
+                className="masonry-grid"
+                columnClassName="masonry-grid_column"
+              >
                 {notebook.notes.map((note, index) => (
                   <SortableNoteCard key={note.id} note={note} index={index}>
                     <NoteCard
@@ -340,7 +350,7 @@ export function NotebookView({
                     />
                   </SortableNoteCard>
                 ))}
-              </div>
+              </Masonry>
             </SortableContext>
           </DndContext>
         )}
