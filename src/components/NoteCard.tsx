@@ -54,9 +54,10 @@ interface NoteCardProps {
 }
 
 function calculateNoteProgress(note: Note, userId: string) {
-  const total = note.tasks.length;
+  const tasks = note.tasks || [];
+  const total = tasks.length;
   if (total === 0) return { completed: 0, total: 0, percentage: 0 };
-  const completed = note.tasks.filter(task => task.completedBy.includes(userId)).length;
+  const completed = tasks.filter(task => task.completedBy.includes(userId)).length;
   return {
     completed,
     total,
@@ -98,6 +99,10 @@ export function NoteCard({
   const { setNodeRef: setRootNodeRef, isOver: isRootOver } = useDroppable({
     id: `root-${note.id}`,
   });
+
+  // Defensive defaults for tasks/folders to avoid crashes on optimistic updates
+  const tasks = note.tasks || [];
+  const folders = note.folders || [];
 
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
@@ -163,10 +168,10 @@ export function NoteCard({
     const overId = over.id as string;
 
     // Check if dropping on a folder
-    const targetFolder = note.folders.find(f => f.id === overId);
+    const targetFolder = (folders).find(f => f.id === overId);
     if (targetFolder) {
       // Moving task to folder
-      const task = note.tasks.find(t => t.id === activeId);
+      const task = (tasks).find(t => t.id === activeId);
       if (task && task.folder_id !== targetFolder.id) {
         onMoveTaskToFolder(activeId, targetFolder.id);
       }
@@ -175,7 +180,7 @@ export function NoteCard({
 
     // Check if dropping on "root" (outside folders)
     if (overId === `root-${note.id}`) {
-      const task = note.tasks.find(t => t.id === activeId);
+      const task = (tasks).find(t => t.id === activeId);
       if (task && task.folder_id !== null) {
         onMoveTaskToFolder(activeId, null);
       }
@@ -183,8 +188,8 @@ export function NoteCard({
     }
 
     // Reordering within same container
-    const activeTask = note.tasks.find(t => t.id === activeId);
-    const overTask = note.tasks.find(t => t.id === overId);
+    const activeTask = (tasks).find(t => t.id === activeId);
+    const overTask = (tasks).find(t => t.id === overId);
     
     if (!activeTask || !overTask) return;
 
@@ -198,8 +203,8 @@ export function NoteCard({
     if (activeTask.folder_id === overTask.folder_id) {
       // Get tasks in the same container (root or folder)
       const tasksInContainer = activeTask.folder_id === null
-        ? note.tasks.filter(t => !t.folder_id)
-        : note.tasks.filter(t => t.folder_id === activeTask.folder_id);
+        ? (tasks).filter(t => !t.folder_id)
+        : (tasks).filter(t => t.folder_id === activeTask.folder_id);
       
       const oldIndex = tasksInContainer.findIndex((t) => t.id === activeId);
       const newIndex = tasksInContainer.findIndex((t) => t.id === overId);
@@ -309,11 +314,11 @@ export function NoteCard({
           >
             <div className="space-y-1">
               {/* Folders */}
-              {note.folders.map(folder => (
+                {(folders).map(folder => (
                 <TaskFolder
                   key={folder.id}
                   folder={folder}
-                  tasks={note.tasks}
+                  tasks={tasks}
                   notebookId={notebookId}
                   noteId={note.id}
                   canEdit={canEdit}
@@ -341,10 +346,10 @@ export function NoteCard({
                 )}
               >
                 <SortableContext
-                  items={note.tasks.filter(t => !t.folder_id).map(t => t.id)}
+                  items={(tasks).filter(t => !t.folder_id).map(t => t.id)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {note.tasks.filter(t => !t.folder_id).map(task => (
+                  {(tasks).filter(t => !t.folder_id).map(task => (
                     <SortableTaskItem key={task.id} task={task}>
                       <TaskItem
                         task={task}

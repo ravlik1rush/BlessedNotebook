@@ -68,11 +68,12 @@ export function useNotebooks() {
     }
 
     try {
-      // Get notebooks where user is owner
+      // Get notebooks where user is owner (ensure manual ordering)
       const { data: ownedNotebooks, error: ownedError } = await supabase
         .from('notebooks')
         .select('*')
-        .eq('owner_id', user.id);
+        .eq('owner_id', user.id)
+        .order('order_index', { ascending: true });
 
       if (ownedError) throw ownedError;
 
@@ -241,6 +242,8 @@ export function useNotebooks() {
         })
       );
 
+      // Enforce manual ordering by order_index for notebooks as well
+      notebooksWithData.sort((a: any, b: any) => (a.order_index || 0) - (b.order_index || 0));
       setNotebooks(notebooksWithData);
     } catch (error) {
       console.error('Error fetching notebooks:', error);
@@ -325,7 +328,16 @@ export function useNotebooks() {
       
       setNotebooks(prev => prev.map(nb => 
         nb.id === notebookId 
-          ? { ...nb, notes: [...nb.notes, { ...data, tasks: [] }] } 
+          ? { 
+              ...nb, 
+              notes: [...nb.notes, { 
+                ...data, 
+                tasks: data.tasks || [],
+                folders: data.folders || [],
+                order_index: (data as any).order_index ?? (nb.notes.length),
+                created_at: (data as any).created_at ?? new Date().toISOString()
+              }] 
+            } 
           : nb
       ));
     } catch (error) {

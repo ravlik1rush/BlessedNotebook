@@ -43,11 +43,13 @@ const Landing = () => {
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Organize, Track, and
-            <span className="text-primary"> Achieve</span> <span className="text-3xl">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span>
+            <span className="text-primary"> Achieve</span> 
+             <br />
+            <span className="text-3xl">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             A collaborative task tracking application where you can create notebooks, 
-            add notes with tasks, and track progress both individually and as a group. 
+            add notes with tasks, and track progress both individually and as a group.
           </p>
         </div>
       </section>
@@ -56,7 +58,7 @@ const Landing = () => {
       <footer className="container mx-auto px-4 py-8 border-t border-border mt-auto relative z-10">
         <div className="text-center">
           <span className="text-sm text-muted-foreground">
-            © 2025 . All rights reserved. 
+            © 2025 All rights not unreserved. 
           </span>
         </div>
       </footer>
