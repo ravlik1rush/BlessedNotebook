@@ -111,7 +111,7 @@ const newOrder = arrayMove(items, oldIndex, newIndex).map((item, idx) => ({
 onReorderNotes(notebookId, newOrder);
 ```
 
-### 4. **Progress Calculations** (`src/types/notebook.ts` + `NotebookView.tsx`)
+### 4. **EchoTasks Calculations** (`src/types/notebook.ts` + `NotebookView.tsx`)
 
 Two progress tracking modes:
 

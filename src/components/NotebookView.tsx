@@ -238,7 +238,7 @@ export function NotebookView({
           <div className="flex items-center gap-6">
             <div className="flex-1 max-w-md">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-foreground">Your Progress</span>
+                <span className="text-sm font-medium text-foreground">Your EchoTasks</span>
                 <span className="text-sm text-muted-foreground">
                   {myProgress.completed}/{myProgress.total} tasks
                 </span>
@@ -297,7 +297,7 @@ export function NotebookView({
               No notes yet
             </h2>
             <p className="text-muted-foreground mb-6">
-              Create your first note to start tracking progress
+              Create your first note to start tracking EchoTasks
             </p>
             {canEdit && (
               <Button onClick={() => setIsAddingNote(true)}>

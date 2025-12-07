@@ -1,6 +1,6 @@
 # EchoTasks
 
-A collaborative task tracking application where users can create notebooks, add notes with tasks, and track progress both individually and as a group.
+A collaborative task tracking application where users can create notebooks, add notes with tasks, and track EchoTasks both individually and as a group.
 
 ## Features
 
@@ -8,7 +8,7 @@ A collaborative task tracking application where users can create notebooks, add 
 - 📝 **Notes**: Create notes within notebooks
 - ✅ **Tasks**: Add tasks to notes and track completion
 - 👥 **Collaboration**: Share notebooks with others via share codes
-- 📊 **Progress Tracking**: Visualize individual and group progress
+- 📊 **EchoTasks Tracking**: Visualize individual and group EchoTasks
 - 🔐 **Authentication**: Secure user authentication with Supabase
 - 🎨 **Modern UI**: Built with shadcn/ui and Tailwind CSS
 

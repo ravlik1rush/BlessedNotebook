@@ -146,7 +146,7 @@ export function NotebookSidebar({
             <NotebookIcon className="w-5 h-5 text-sidebar-primary" />
           </div>
           <div>
-            <h1 className="font-bold text-sidebar-foreground">Progress <span className="text-sm"></span></h1>
+            <h1 className="font-bold text-sidebar-foreground">EchoTasks <span className="text-sm"></span></h1>
             <p className="text-xs text-sidebar-muted">Track your goals ⋆˚࿔</p>
           </div>
         </div>
